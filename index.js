@@ -9,13 +9,15 @@
 })()
 
 function addRecentlyViewed(parent, items) {
+    const msg = document.getElementById("msg")
     items.forEach((element, key) => {
         const itemDiv = createDiv("item-"+key, ["recently-viewed-item"])
         const itemImage = createImage("item-image-"+key,[ "recently-viewed-item-image"], element.image)
         const itemName = createTitle("item-name-"+key, ["recently-viewed-item-name", "truncate-overflow"], element.title)
         const itemPrice = createPrice("item-price-"+key, ["recently-viewed-item-price"], element.price)
-        const itemButton = createButton("btn-item-action-"+key,["recently-viewed-item-action"], "Add to cart", ()=>{
-            console.log("Item "+key+" clicked")
+        const itemButton = createButton("btn-item-action-"+key,["recently-viewed-item-action"], "Add to cart", (e)=>{
+            msg.innerHTML = "Item "+element.title+ " added in cart."
+            e.target.disabled = true
         })
         itemDiv.appendChild(itemImage)
         itemDiv.appendChild(itemName)
